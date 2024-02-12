@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {login} from '../Utils/requests.tsx'
+import {login,authenticate} from '../Utils/requests.tsx'
 import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
@@ -23,8 +23,8 @@ export default function SignIn() {
         if(token){
             let result = login(token)
             result.then((d)=>{
-                console.log(d.data)
                 navigate("/dashboard",{state:d.data});
+                
             }).catch((err)=>{
                 console.log(err)
                 setErrorMsg("Please check the credentials")

@@ -12,7 +12,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { AccountCircle } from '@mui/icons-material';
-import { Grid } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
@@ -30,7 +29,7 @@ function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const { userDetails } = props
-  console.log(userDetails)
+  
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -39,7 +38,8 @@ function ResponsiveAppBar(props) {
   };
 
   const handleCloseNavMenu = (el) => {
-    console.log(el)
+    // const (el.currentTarget.dataset)
+    // switch(el.)
     setAnchorElNav(null);
   };
 
@@ -92,13 +92,12 @@ function ResponsiveAppBar(props) {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} data-value={page} onClick={(e)=>{handleCloseNavMenu(e)}}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
