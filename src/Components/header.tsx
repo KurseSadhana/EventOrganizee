@@ -14,7 +14,6 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { AccountCircle } from '@mui/icons-material';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-
 const pages = ['Dashboard', 'Create Event'];
 const settings = ['Logout'];
 const Item = styled(Paper)(({ theme }) => ({
@@ -28,8 +27,9 @@ const Item = styled(Paper)(({ theme }) => ({
 function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-  const { userDetails } = props
   
+  const { userDetails } = props;
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -38,8 +38,6 @@ function ResponsiveAppBar(props) {
   };
 
   const handleCloseNavMenu = (el) => {
-    // const (el.currentTarget.dataset)
-    // switch(el.)
     setAnchorElNav(null);
   };
 
@@ -97,7 +95,7 @@ function ResponsiveAppBar(props) {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} data-value={page} onClick={(e)=>{handleCloseNavMenu(e)}}>
+                <MenuItem key={page} onClick={(e)=>{ handleCloseNavMenu(e);props.setSelectedPage(page)}}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -125,7 +123,7 @@ function ResponsiveAppBar(props) {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={(e)=>{handleCloseNavMenu(e); props.setSelectedPage(page)}}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}

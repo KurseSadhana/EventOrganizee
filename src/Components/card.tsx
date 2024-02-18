@@ -18,8 +18,8 @@ const bull = (
 const CustomCard = (props) => {
     const { data } = props
     return (
-        <React.Fragment>
-            <CardContent>
+        <div onClick={props.onClick}>
+            <CardContent >
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     {data.description.text}
                 </Typography>
@@ -35,17 +35,17 @@ const CustomCard = (props) => {
                     {data.start.local}
                 </Typography>
             </CardContent>
-            <CardActions>
+            {/* <CardActions>
                 <Button size="small">Learn More</Button>
-            </CardActions>
-        </React.Fragment>
+            </CardActions> */}
+        </div>
     )
 };
 
 export default function OutlinedCard(props) {
     return (
         <Box sx={{ minWidth: 275 }}>
-            <Card variant="outlined"><CustomCard data={props.data}></CustomCard></Card>
+            <Card variant="outlined"><CustomCard onClick={props.onClick} data={props.data}></CustomCard></Card>
         </Box>
     );
 }
